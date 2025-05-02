@@ -2,13 +2,13 @@ class Expense {
   final String id;
   final String title;
   final double value;
-  final DateTime? date;
+  final DateTime date;
 
   // construtor
   Expense({
     required this.id,
     required this.title,
     required this.value,
-    this.date,
+    required this.date,
   });
 }
