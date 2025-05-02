@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
                 return(
                   Card(
                     elevation: 2.0,
-                    margin: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 8.0),
+                    margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
                     child: 
                       Container(
                         padding: EdgeInsets.all(16),
@@ -50,6 +50,7 @@ class Home extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text("${d.title}"),
                                 Text("${d.date}", ),
@@ -57,7 +58,8 @@ class Home extends StatelessWidget {
                             ),
                             Container(
                               padding: EdgeInsets.all(8),
-                              decoration: BoxDecoration(color: const Color.fromARGB(255, 255, 224, 130), ),
+                              
+                              decoration: BoxDecoration(color: const Color.fromARGB(255, 188, 188, 188), borderRadius: BorderRadius.all(Radius.circular(8))),
                               child: Text("${d.value}"),
                               
 
