@@ -57,7 +57,7 @@ class Home extends StatelessWidget {
                                 Text(
                                   "${d.title}", style: const TextStyle(fontWeight: FontWeight.bold),),
                                 Text(
-                                  DateFormat('dd/MM/yyyy hh:mm').format(d.date), style: TextStyle(color: Colors.black45)),
+                                  DateFormat('dd/MM/yyyy HH:mm').format(d.date), style: TextStyle(color: Colors.black45)),
                               ],
                             ),
                             Container(
@@ -74,6 +74,11 @@ class Home extends StatelessWidget {
                   )
                 );
               }).toList(),
+            ),
+          ),
+          Container(
+            child: Column(
+              children: <Widget>[]
             ),
           ),
         ],
