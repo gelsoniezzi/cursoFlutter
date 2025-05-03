@@ -34,54 +34,97 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(title: Text("App de Despesas"), ),
-      body: Column(
-        children: <Widget>[
-          Card(child: Text("Gráfico"), elevation: 2.0,),
-          Container(
-            child: Column(
-              children: despesas.map((d) {
-                return(
-                  Card(
-                    elevation: 2.0,
-                    margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 4.0),
-                    child: 
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        child: Row(
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            Card(child: Text("Gráfico"), elevation: 2.0,),
+            Container(
+              child: Column(
+                children: despesas.map((d) {
+                  return(
+                    Card(
+                      elevation: 2.0,
+                      child: 
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          child: Row(
+                            
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${d.title}", style: const TextStyle(fontWeight: FontWeight.bold),),
+                                  Text(
+                                    DateFormat('dd/MM/yyyy HH:mm').format(d.date), style: TextStyle(color: Colors.black45)),
+                                ],
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                
+                                decoration: BoxDecoration(color: const Color.fromARGB(255, 188, 188, 188), borderRadius: BorderRadius.all(Radius.circular(8))),
+                                child: Text("R\$ ${d.value.toStringAsFixed(2)}"),
+                                
+        
+                              ),
+                            ]
+                          ),
+                        ),
+                    )
+                  );
+                }).toList(),
+              ),
+            ),
+            Container(
+              
+              child: Card(                
+                elevation: 3.0,
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    
+                    children: <Widget>[
+                      Text("Cadastrar despesa",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 16,),
+                      TextField(
+                        decoration: InputDecoration(
+                          suffixIcon: Icon(Icons.clear),
+                          border: OutlineInputBorder(),
+                          labelText: "Descrição",
                           
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${d.title}", style: const TextStyle(fontWeight: FontWeight.bold),),
-                                Text(
-                                  DateFormat('dd/MM/yyyy HH:mm').format(d.date), style: TextStyle(color: Colors.black45)),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(8),
-                              
-                              decoration: BoxDecoration(color: const Color.fromARGB(255, 188, 188, 188), borderRadius: BorderRadius.all(Radius.circular(8))),
-                              child: Text("R\$ ${d.value.toStringAsFixed(2)}"),
-                              
-
-                            ),
-                          ]
                         ),
                       ),
-                  )
-                );
-              }).toList(),
+                      SizedBox(height: 16,),
+                      TextField(
+                        decoration: InputDecoration(
+                          suffixIcon: Icon(Icons.clear),
+                          prefixText: "R\$ ",
+                          border: OutlineInputBorder(),
+                          labelText: "Valor",
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0,16,0,0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            TextButton(onPressed: () {}, child: Text("Limpar")),
+                            FilledButton(onPressed: () {}, child: Text("Cadastrar")),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-          Container(
-            child: Column(
-              children: <Widget>[]
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
