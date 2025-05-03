@@ -21,6 +21,14 @@ class ExpensesApp extends StatelessWidget {
 class Home extends StatelessWidget {
   Home({super.key});
 
+  //Estava funcionando assim, o que está errado
+  // 101. Usando TextField #02 - https://www.udemy.com/course/curso-flutter/learn/lecture/17953636#overview
+  //String? title;
+  //String? value;
+
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final despesas = [
     Expense(id: "e1", title: "Tenis", value: 999.00, date: DateTime.now()),
     Expense(id: "e2", title: "Agua", value: 49.00, date: DateTime.now()),
@@ -77,6 +85,7 @@ class Home extends StatelessWidget {
                 }).toList(),
               ),
             ),
+            SizedBox(height: 8,),
             Container(
               
               child: Card(                
@@ -86,12 +95,14 @@ class Home extends StatelessWidget {
                   child: Column(
                     
                     children: <Widget>[
-                      Text("Cadastrar despesa",
+                      const Text("Cadastrar despesa",
                         style: TextStyle(
                           fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 16,),
                       TextField(
+                        // onChanged: (newValue) => title = newValue, // essa abordagem é valida para utilização com a variável title e value (que está comentada)
+                        controller: titleController,
                         decoration: InputDecoration(
                           suffixIcon: Icon(Icons.clear),
                           border: OutlineInputBorder(),
@@ -101,6 +112,8 @@ class Home extends StatelessWidget {
                       ),
                       SizedBox(height: 16,),
                       TextField(
+                        controller: valueController,
+                        // onChanged: (newValue) => value = newValue, // essa abordagem é valida para utilização com a variável title e value (que está comentada)
                         decoration: InputDecoration(
                           suffixIcon: Icon(Icons.clear),
                           prefixText: "R\$ ",
@@ -113,8 +126,11 @@ class Home extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            TextButton(onPressed: () {}, child: Text("Limpar")),
-                            FilledButton(onPressed: () {}, child: Text("Cadastrar")),
+                            TextButton(onPressed: () {}, child: const Text("Limpar")),
+                            FilledButton(onPressed: () {
+                              print(titleController.text);
+                              print(valueController.text);
+                            }, child: const Text("Cadastrar")),
                           ],
                         ),
                       ),
