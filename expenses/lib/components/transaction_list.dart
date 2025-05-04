@@ -4,7 +4,7 @@ import 'package:expenses/models/transaction.dart';
 class TransactionList extends StatelessWidget {
   //const TransactionList({super.key});
 
-  List<Transaction> _transactions;
+  final List<Transaction> _transactions;
 
   // Construtor
   TransactionList(this._transactions);
@@ -12,9 +12,9 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(16.0),
               color: Colors.amber,
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 8),
               child: 
                 Column(
                   children: _transactions.map((tr) {
