@@ -1,11 +1,13 @@
+import 'package:expenses/components/transaction_form.dart';
+import 'package:expenses/components/transaction_list.dart';
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 
-main () => runApp(const ExpensesApp());
+main () => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
-  const ExpensesApp({super.key});
+  // const ExpensesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,29 +32,24 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Expenses App"),
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: 
-              Card(
-                child: Text("Gráfico"), 
-                elevation: 5.0,
-                ),
-            ),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: 
-              Column(
-                children: _transactions.map((tr) {
-                  return Text("${tr.id}: ${tr.title}.");
-                }).toList(),
-              ),            
-            ),
-          
-        ],
+      body: Container(
+        margin: EdgeInsets.all(16),
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: 
+                Card(
+                  child: Text("Gráfico"),
+                  elevation: 5.0,
+                  ),
+              ),
+              TransactionList(_transactions),
+              TransactionForm(),
+            
+          ],
+        ),
       ),
     );
   }
