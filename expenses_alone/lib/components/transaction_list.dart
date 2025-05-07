@@ -7,7 +7,7 @@ class TransactionList extends StatelessWidget {
 
   final List<Transaction> transactions;
 
-  TransactionList(this.transactions);
+  const TransactionList(this.transactions, {super.key});
 
 
 
@@ -21,7 +21,7 @@ class TransactionList extends StatelessWidget {
                       elevation: 2.0,
                       child: 
                         Container(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: Row(
                             
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,18 +30,18 @@ class TransactionList extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${d.title}", style: const TextStyle(fontWeight: FontWeight.bold),),
+                                    d.title, style: const TextStyle(fontWeight: FontWeight.bold),),
                                   Text(
-                                    DateFormat('dd/MM/yyyy HH:mm').format(d.date), style: TextStyle(color: Colors.black45)),
+                                    DateFormat('dd/MM/yyyy HH:mm').format(d.date), style: const TextStyle(color: Colors.black45)),
                                 ],
                               ),
                               Container(
-                                padding: EdgeInsets.all(8),
+                                padding: const EdgeInsets.all(8),
                                 
-                                decoration: BoxDecoration(color: const Color.fromARGB(255, 188, 188, 188), borderRadius: BorderRadius.all(Radius.circular(8))),
+                                decoration: const BoxDecoration(color: Color.fromARGB(255, 188, 188, 188), borderRadius: BorderRadius.all(Radius.circular(8))),
                                 child: Text("R\$ ${d.value.toStringAsFixed(2)}"),
                                 
-        
+                      
                               ),
                             ]
                           ),

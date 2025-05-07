@@ -8,7 +8,7 @@ class TransactionForm extends StatelessWidget {
 
   final void Function(String, double) onSubmit; //variável do tipo função que recebe dois parametros
 
-  TransactionForm(this.onSubmit); //a função é recebida como parâmetro do construtor
+  TransactionForm(this.onSubmit, {super.key}); //a função é recebida como parâmetro do construtor
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TransactionForm extends StatelessWidget {
               child: Card(                
                 elevation: 3.0,
                 child: Container(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     
                     children: <Widget>[
@@ -24,7 +24,7 @@ class TransactionForm extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 16,),
+                      const SizedBox(height: 16,),
                       TextField(
                         // onChanged: (newValue) => title = newValue, // essa abordagem é valida para utilização com a variável title e value (que está comentada)
                         controller: titleController,
@@ -38,6 +38,7 @@ class TransactionForm extends StatelessWidget {
                       const SizedBox(height: 16,),
                       TextField(
                         controller: valueController,
+                        keyboardType: TextInputType.number,
                         // onChanged: (newValue) => value = newValue, // essa abordagem é valida para utilização com a variável title e value (que está comentada)
                         decoration: const InputDecoration(
                           suffixIcon: Icon(Icons.clear),
@@ -51,7 +52,10 @@ class TransactionForm extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            TextButton(onPressed: () {}, child: const Text("Limpar")),
+                            TextButton(onPressed: () {                              
+                              titleController.clear();
+                              valueController.clear();
+                            }, child: const Text("Limpar")),
                             FilledButton(onPressed: () {
                               final title = titleController.text;
                               final value = double.tryParse(valueController.text) ?? 0.0; // pega-se as informações do controller e as trata.
