@@ -23,7 +23,6 @@ class ExpensesApp extends StatelessWidget {
 
 class Home extends StatefulWidget {
   const Home({super.key});
-  
 
   @override
   State<Home> createState() => _HomeState();
@@ -34,34 +33,32 @@ class _HomeState extends State<Home> {
     showModalBottomSheet(
       context: context,
       builder: (ctx) {
-        return TransactionForm(_addTransaction);   
+        return TransactionForm(_addTransaction);
       },
     );
   }
 
   final _despesas = [
-    Transaction(id: "e1", title: "Tenis", value: 999.00, date:DateTime.now()),
-    Transaction(id: "e2", title: "Agua", value: 49.00, date:DateTime.now()),
-    Transaction(id: "e3", title: "Cuecas", value: 198.00, date:DateTime.now()),
-    Transaction(id: "e4", title: "Camisa", value: 60.00, date:DateTime.now()),
-    Transaction(id: "e5", title: "Perfume", value: 78.00, date:DateTime.now()),    
+    Transaction(id: "e1", title: "Tenis", value: 999.00, date: DateTime.now()),
+    Transaction(id: "e2", title: "Agua", value: 49.00, date: DateTime.now()),
+    Transaction(id: "e3", title: "Cuecas", value: 198.00, date: DateTime.now()),
+    Transaction(id: "e4", title: "Camisa", value: 60.00, date: DateTime.now()),
+    Transaction(id: "e5", title: "Perfume", value: 78.00, date: DateTime.now()),
   ];
 
   _addTransaction(String title, double value) {
     // Instanciar uma transaction
 
     final newTransaction = Transaction(
-      id: Random().nextDouble().toString(),
-      title: title, 
-      value: value,
-      date: DateTime.now()
-    );
+        id: Random().nextDouble().toString(),
+        title: title,
+        value: value,
+        date: DateTime.now());
 
     setState(() {
       _despesas.add(newTransaction);
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +66,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: const Text("App de Despesas"),
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.add)),
+          IconButton(
+            onPressed: () => _openModalTransactionForm(context),
+            icon: Icon(Icons.add),
+          ),
         ],
       ),
       body: Container(
@@ -90,7 +90,10 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _openModalTransactionForm(context),
+        onPressed: () {
+          _openModalTransactionForm(context);
+          
+        },
       ),
     );
   }

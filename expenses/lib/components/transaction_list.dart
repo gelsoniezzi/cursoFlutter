@@ -7,12 +7,12 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> _transactions;
 
   // Construtor
-  TransactionList(this._transactions);
+  const TransactionList(this._transactions, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
               color: Colors.amber,
               width: double.infinity,
               child: 

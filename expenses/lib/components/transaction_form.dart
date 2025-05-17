@@ -8,26 +8,26 @@ class TransactionForm extends StatelessWidget {
 
   final void Function(String, double) onSubmit;
 
-  TransactionForm(this.onSubmit);
+  TransactionForm(this.onSubmit, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
                 elevation: 2.0,
                 child: Container(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: <Widget>[
-                      Text("Formulário"),
+                      const Text("Formulário"),
                       TextField(
                         controller: titleController,
-                        decoration: InputDecoration(labelText: "Título"),
+                        decoration: const InputDecoration(labelText: "Título"),
                       ),
                       TextField(
                         controller: valueController,
-                        decoration: InputDecoration(labelText: "Valor"),
+                        decoration: const InputDecoration(labelText: "Valor"),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       FilledButton(onPressed: () {
                         print("Titulo: ${titleController.text}");
                         print("Valor: ${valueController.text}");
@@ -35,7 +35,7 @@ class TransactionForm extends StatelessWidget {
                         final double value = double.tryParse(valueController.text) ?? 0.0;
                         onSubmit(titleController.text, value);
                       }, 
-                      child: Text("Enviar")),
+                      child: const Text("Enviar")),
                           
                     ],
                   ),

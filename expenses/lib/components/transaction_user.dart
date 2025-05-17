@@ -7,12 +7,12 @@ import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class TransactionUser extends StatefulWidget {
+  const TransactionUser({super.key});
+
   // const TransactionUser({super.key});
 
   @override
   State<TransactionUser> createState() => _TransactionUserState();
-
-
 
 
 }
@@ -27,7 +27,7 @@ class _TransactionUserState extends State<TransactionUser> {
 
   void newTransaction(String title, double value){
     // é necessário 
-    final newTransaction = new Transaction(
+    final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value);

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 main () => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
+  const ExpensesApp({super.key});
+
   // const ExpensesApp({super.key});
 
   @override
@@ -34,16 +36,16 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Expenses App"),
       ),
       body: Container(
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.all(16),
         child: Column(
           children: <Widget>[
             Container(
               width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: 
-                Card(
-                  child: Text("Gráfico"),
+                const Card(
                   elevation: 5.0,
+                  child: Text("Gráfico"),
                   ),
               ),
             TransactionUser(),
