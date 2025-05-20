@@ -10,9 +10,44 @@ void main() {
 
   int i = 10;
 
+  // função normal  
+  int somar(int x, int y){
+    return x + y;
+  }
+
+  // função anônima: Função sem nome, geralmente atribuída a alguma variável
+  var multiplicar = (int x, int y) {
+    return x * y;
+  };
+
+  print('Funcao anonima multiplicar = ${multiplicar(2,3)}');
+
+  // Função flecha
+  int somaFlecha(x, y) => x + y; //a arrow function não tem a palavra reservada *return*
+
+  print('Soma flecha ${somaFlecha(10, 20)}');
+
+  // Função flecha: Arrow function + funcao anonima
+  var subtracaoAnonimaArrow = (x, y) => x - y; 
+
+  print('soma arrow ${subtracaoAnonimaArrow(20.1, 10)}');
+
+
+  // Função parâmetro. Uma função pode ser passada como parâmetro para outra função
+
+  var operacao = (x, y, Function op)  {
+    return op(x, y);
+  };
+
+  print('Operacao somaFlecha: ${operacao(1,2,subtracaoAnonimaArrow)}');
+
+  // Operação com função explícita (normal)
+  print('Operação com funcao normal${operacao(2,3,somaFlecha)}');
+
   
-  // função anônima 
-  //int Function soma (int a, int b) = (x, y ) {return x + y};
+
+
+
 
   //print(soma(1,2));
 
@@ -65,7 +100,9 @@ void main() {
 
   print(funcaoSubtracaoDinamica(12.8,6.6).runtimeType); // saída: double
 
-  print(funcaoSubtracaoDinamica(1,2).runtimeType);
+  print(funcaoSubtracaoDinamica(1,2).runtimeType); // saída: int
+
+  // 
 
 
   
