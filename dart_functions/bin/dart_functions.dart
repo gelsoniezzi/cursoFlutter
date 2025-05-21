@@ -20,6 +20,11 @@ void main() {
     return x * y;
   };
 
+  //exemplo 1
+  Function funcaoSubtracao = (int x, int y) {
+    return x - y;
+  };
+
   print('Funcao anonima multiplicar = ${multiplicar(2,3)}');
 
   // Função flecha
@@ -39,10 +44,12 @@ void main() {
     return op(x, y);
   };
 
-  print('Operacao somaFlecha: ${operacao(1,2,subtracaoAnonimaArrow)}');
+  print('Operacao somar: ${operacao(1,2,somar)}');
+  print('Operacao somaFlecha: ${operacao(1,2,somaFlecha)}');
+  print('Operacao somar: ${operacao(1,2,somar)}');
+  
+  print('Operação subtração: ${operacao(3,2,funcaoSubtracao)}');
 
-  // Operação com função explícita (normal)
-  print('Operação com funcao normal${operacao(2,3,somaFlecha)}');
 
   
 
@@ -84,10 +91,7 @@ void main() {
 
   //No exemplo 1, a função tem os tipos definidos, entretanto podemos definir uma função utilizando tipos dinâmicos
 
-  //exemplo 1
-  Function funcaoSubtracao = (int x, int y) {
-    return x - y;
-  };
+  
 
   // Nesse e
   print(funcaoSubtracao(10, 2));
@@ -103,7 +107,14 @@ void main() {
   print(funcaoSubtracaoDinamica(1,2).runtimeType); // saída: int
 
   // 
+  // Tear-off
+  // O forEach, é uma função com a seguinte assinatura void forEach (void f(E element))
+  // É passado uma função para cada elemento da lista
+  
 
+  var numeros = [1,2,3,5,8];
+
+  numeros.forEach((e) => print('Veja: $e\n'));
 
   
 }
@@ -119,6 +130,8 @@ int fatorial(int x ){
   }else{
     return x;
   }
+
+  
 }
 
 
