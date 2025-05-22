@@ -80,7 +80,7 @@ void main(){
   }catch (e) {
     print(e);
   } finally{
-    print('O finally sempre é executado após um try.');
+    print('O finally sempre é executado após um try, independente da ocorrência ou não de erros.');
   }
   //----------------------------------------------------------
   
