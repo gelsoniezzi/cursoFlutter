@@ -1,0 +1,1 @@
+enum Mod{ac, li_ep, li_pcd, li_q, li_ppi, lb_ep, lb_pcd, lb_q, lb_ppi} // modalidade

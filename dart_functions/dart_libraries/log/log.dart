@@ -9,7 +9,7 @@ void info(Object object) => log(Cores.verde, "[INFO]: $object");
 enum Cores {verde, vermelho, amarelo}
 const resetarCor = '\x1b[m';
 // objeto de cores
-const ansiCores = {
+var ansiCores = {
   Cores.verde: '\x1b[32m',
   Cores.vermelho: '\x1b[31m',
   Cores.amarelo: '\x1b[33m',
@@ -18,3 +18,7 @@ const ansiCores = {
 void log(Cores cor, Object object){
   stdout.writeln('${ansiCores[cor]}$object$resetarCor');
 }
+
+int  numero = 0;
+
+int _numeroPrivado = 2;
