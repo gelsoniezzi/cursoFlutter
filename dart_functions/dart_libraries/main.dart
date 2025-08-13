@@ -37,10 +37,7 @@ main() {
 
   print('logger.numero após modificação ${logger.numero}'); // A modificação ocorre pois a variavel numero é publica
 
-  //print('${logger._numeroPrivado}'); // nome indefinido
-
-  
-  
+  //print('${logger._numeroPrivado}'); // nome indefinido 
   
 
 }
