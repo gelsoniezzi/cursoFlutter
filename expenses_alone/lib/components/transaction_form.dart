@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-class TransactionForm extends StatelessWidget {
-  //const TransactionForm({super.key});
+class TransactionForm extends StatefulWidget {
+  final void Function(String, double) onSubmit; //variável do tipo função que recebe dois parametros
 
+  TransactionForm(this.onSubmit, {super.key}); 
+  @override
+  State<TransactionForm> createState() => _TransactionFormState();
+}
+
+class _TransactionFormState extends State<TransactionForm> {
+  //const TransactionForm({super.key});
   final titleController = TextEditingController();
   final valueController = TextEditingController();
 
-  final void Function(String, double)
-      onSubmit; //variável do tipo função que recebe dois parametros
-
-  TransactionForm(this.onSubmit,
-      {super.key}); //a função é recebida como parâmetro do construtor
-
+ //a função é recebida como parâmetro do construtor
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,7 +69,7 @@ class TransactionForm extends StatelessWidget {
                           final title = titleController.text;
                           final value = double.tryParse(valueController.text) ??
                               0.0; // pega-se as informações do controller e as trata.
-                          onSubmit(title,
+                          widget.onSubmit(title,
                               value); //executa a funcao que recebeu como parametro do construtor.
                         },
                         child: const Text("Cadastrar")),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expenses_alone/models/transaction.dart';
 import 'package:expenses_alone/components/transaction_form.dart';
 import 'package:expenses_alone/components/transaction_list.dart';
+import 'package:expenses_alone/mock/despesas.dart';
 
 import 'dart:math';
 
@@ -13,7 +14,7 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "Despesas App",
       debugShowCheckedModeBanner: false,
       home: Home(),
@@ -29,35 +30,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  // variáveis
+  final _despesas = mock_despesas;
+
+
+  // Funções
+
   _openModalTransactionForm(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (ctx) {
-        return TransactionForm(_addTransaction);
+        return TransactionForm(_addTransaction); 
       },
     );
   }
 
-  final _despesas = [
-    Transaction(id: "e1", title: "Tenis", value: 999.00, date: DateTime.now()),
-    Transaction(id: "e2", title: "Agua", value: 49.00, date: DateTime.now()),
-    Transaction(id: "e3", title: "Cuecas", value: 198.00, date: DateTime.now()),
-    Transaction(id: "e4", title: "Camisa", value: 60.00, date: DateTime.now()),
-    Transaction(id: "e5", title: "Perfume", value: 78.00, date: DateTime.now()),
-  ];
-
   _addTransaction(String title, double value) {
     // Instanciar uma transaction
 
-    final newTransaction = Transaction(
-        id: Random().nextDouble().toString(),
-        title: title,
+    final newTransaction = Transaction( // cria uma nova transação
+        id: Random().nextDouble().toString(), // atribui um valor randomico ao id
+        title: title, 
         value: value,
         date: DateTime.now());
 
-    setState(() {
+    setState(() { // seta o estado para que aconteça a atualização dos componentes
       _despesas.add(newTransaction);
-    });
+    });  
+
+    // fechar o modal
+    Navigator.of(context).pop();
   }
 
   @override
