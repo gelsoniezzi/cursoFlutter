@@ -73,6 +73,12 @@ class _HomeState extends State<Home> {
     Navigator.of(context).pop();
   }
 
+  List<Transaction> get _recentTransactions {
+    return _despesas.where( (d) {
+      return d.date.isAfter(DateTime.now().subtract(const Duration(days: 7)));
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,9 +101,9 @@ class _HomeState extends State<Home> {
               child: Column(
                 
                 children: <Widget>[
-                  const Card(
+                  Card(
                     elevation: 2.0,
-                    child: Chart(),
+                    child: Chart(_recentTransactions),
                   ),
                   const SizedBox(height: 8.0),
                   TransactionList(_despesas),
