@@ -1,4 +1,5 @@
 // import 'package:expenses_alone/components/transaction_user.dart';
+import 'package:expenses_alone/components/chart.dart';
 import 'package:flutter/material.dart';
 import 'package:expenses_alone/models/transaction.dart';
 import 'package:expenses_alone/components/transaction_form.dart';
@@ -14,10 +15,17 @@ class ExpensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Despesas App",
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: const Home(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blueAccent,
+          
+        ),
+        
+      ),
     );
   }
 }
@@ -30,10 +38,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   // variáveis
   final _despesas = mock_despesas;
-
 
   // Funções
 
@@ -41,7 +47,7 @@ class _HomeState extends State<Home> {
     showModalBottomSheet(
       context: context,
       builder: (ctx) {
-        return TransactionForm(_addTransaction); 
+        return TransactionForm(_addTransaction);
       },
     );
   }
@@ -49,15 +55,19 @@ class _HomeState extends State<Home> {
   _addTransaction(String title, double value) {
     // Instanciar uma transaction
 
-    final newTransaction = Transaction( // cria uma nova transação
-        id: Random().nextDouble().toString(), // atribui um valor randomico ao id
-        title: title, 
+    final newTransaction = Transaction(
+        // cria uma nova transação
+        id: Random()
+            .nextDouble()
+            .toString(), // atribui um valor randomico ao id
+        title: title,
         value: value,
         date: DateTime.now());
 
-    setState(() { // seta o estado para que aconteça a atualização dos componentes
+    setState(() {
+      // seta o estado para que aconteça a atualização dos componentes
       _despesas.add(newTransaction);
-    });  
+    });
 
     // fechar o modal
     Navigator.of(context).pop();
@@ -67,7 +77,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("App de Despesas"),
+        title: Center(child: const Text("App de Despesas")),
         actions: <Widget>[
           IconButton(
             onPressed: () => _openModalTransactionForm(context),
@@ -76,26 +86,31 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: Container(
-        margin: const EdgeInsets.all(8),
-        //padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              const Card(
-                elevation: 2.0,
-                child: Text("Gráfico"),
+          alignment: Alignment.topCenter,
+          
+          margin: const EdgeInsets.all(8),
+          //padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Expanded(
+              child: Column(
+                
+                children: <Widget>[
+                  const Card(
+                    elevation: 2.0,
+                    child: Chart(),
+                  ),
+                  const SizedBox(height: 8.0),
+                  TransactionList(_despesas),
+                ],
               ),
-              const SizedBox(height: 8.0),
-              TransactionList(_despesas),
-            ],
+            ),
           ),
         ),
-      ),
+      
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
           _openModalTransactionForm(context);
-          
         },
       ),
     );
