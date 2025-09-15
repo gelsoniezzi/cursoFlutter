@@ -42,19 +42,25 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //groupedTransactions;
-    return Card(
-      elevation: 6,
-      color: Colors.amberAccent,
+    return Container(
       margin: EdgeInsets.all(8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: groupedTransactions.map((tr) {
-          return ChartBar(
-            label: tr['day'] as String,
-            valorTotal: tr['value'] as double,
-            percentual: 0.5,
-          );
-        }).toList(),
+      child: Column(
+        children: [
+          Text("Gráfico"),
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: groupedTransactions.map((tr) {
+              return ChartBar(
+                label: tr['day'] as String,
+                valorTotal: tr['value'] as double,
+                percentual: 0.5,
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }
